@@ -1,0 +1,607 @@
+<!-- inputform.hbs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Organizer</title>
+  <link rel="stylesheet" href="css/form.css">
+
+ 
+</head>
+<body>
+    <form action="/saveData"  enctype="multipart/form-data" method="POST">
+        <h2>PTH Financial & Insurance - Tax Organizer</h2>
+        <h3>Tax Organizer for the </h3>
+        <label for="taxYear">Tax Year</label>
+        <input type="number" id="taxYear" name="taxYear" required placeholder="Enter the tax year" min="1950" max = "2024">
+    
+    <p>Please complete the following form for filling out the Income Tax Return before your appointment.</p>
+
+    <h4>1. Personal Information</h4>
+    <table>
+        <caption>Taxpayer</caption>
+        <tr>
+            <td><label for="taxpayerName">Name (First & Last)</label></td>
+            <td><input type="text" id="taxpayerName" name="taxpayerName" required></td>
+        </tr>
+        <tr>
+            <td><label for="taxpayerSSN">SSN</label></td>
+            <td><input type="text" id="taxpayerSSN" name="taxpayerSSN" required></td>
+        </tr>
+        <tr>
+            <td><label for="taxpayerdob">Date of Birth</label></td>
+            <td><input type="date" name="taxpayerdob" id="taxpayerdob"></td>
+        </tr>
+        <tr>
+            <td><label for="taxpayerOccupation">Occupation</label></td>
+            <td><input type="text" id="taxpayerOccupation" name="taxpayerOccupation"></td>
+        </tr>
+        <tr>
+            <td><label for="taxpayerPhone">Phone Number</label></td>
+            <td><input type="tel" id="taxpayerPhone" name="taxpayerPhone"></td>
+        </tr>
+        <tr>
+            <td><label for="taxpayerEmail">Email</label></td>
+            <td><input type="email" id="taxpayerEmail" name="taxpayerEmail"></td>
+        </tr>
+    </table>
+    
+        <!-- Add more fields for taxpayer's information -->
+
+        <h2>Spouse</h2>
+        <table>
+            <tr>
+                <td><label for="spouseName">Name (First & Last)</label></td>
+                <td><input type="text" id="spouseName" name="spouseName"></td>
+            </tr>
+            <tr>
+                <td><label for="spouseSSN">SSN</label></td>
+                <td><input type="text" id="spouseSSN" name="spouseSSN"></td>
+            </tr>
+            <tr>
+                <td><label for="spousedob">Date of Birth</label></td>
+                <td><input type="date" name="spousedob" id="spousedob"></td>
+            </tr>
+            <tr>
+                <td><label for="spouseOccupation">Occupation</label></td>
+                <td><input type="text" id="spouseOccupation" name="spouseOccupation"></td>
+            </tr>
+            <tr>
+                <td><label for="spousePhone">Phone Number</label></td>
+                <td><input type="tel" id="spousePhone" name="spousePhone"></td>
+            </tr>
+            <tr>
+                <td><label for="spouseEmail">Email</label></td>
+                <td><input type="email" id="spouseEmail" name="spouseEmail"></td>
+            </tr>
+        </table>
+        
+        <!-- Add more fields for spouse's information -->
+
+        <h5>Address</h5>
+<table>
+    <tr>
+        <td><label for="streetNo">Street No</label></td>
+        <td><input type="text" id="streetNo" name="streetNo"></td>
+    </tr>
+    <tr>
+        <td><label for="city">City</label></td>
+        <td><input type="text" id="city" name="city"></td>
+    </tr>
+    <tr>
+        <td><label for="zip">ZIP</label></td>
+        <td><input type="text" id="zip" name="zip"></td>
+    </tr>
+    <tr>
+        <td><label for="county">County</label></td>
+        <td><input type="text" id="county" name="county"></td>
+    </tr>
+    <tr>
+        <td><label for="state">State</label></td>
+        <td><input type="text" id="state" name="state"></td>
+    </tr>
+    <tr>
+        <td><label for="homePhone">Phone (Home)</label></td>
+        <td><input type="tel" id="homePhone" name="homePhone"></td>
+    </tr>
+</table>
+
+
+         <!-- Additional Questions Section -->
+    <h4>2. Additional Questions</h4>
+    <!-- Question: Did you live in more than one residence during last year? -->
+    <label for="multipleResidence">Did you live in more than one residence during last year?</label>
+    <input type="text" id="multipleResidence" name="multipleResidence" placeholder="Mention State Name">
+
+    <!-- Question: Do you have an Identity Protection PIN issued by the IRS? -->
+    <label for="identityProtectionPIN">Do you have an Identity Protection PIN issued by the IRS?</label>
+    <select id="identityProtectionPIN" name="identityProtectionPIN">
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+    </select>
+
+    <!-- PIN input field -->
+    <div id="pinInput" style="display: none;">
+        <label for="pin">Provide PIN</label>
+        <input type="text" id="pin" name="pin" placeholder="Enter your PIN">
+    </div>
+    
+    <!-- Question: Marital Status -->
+    <label for="maritalStatus">Marital Status</label>
+    <select id="maritalStatus" name="maritalStatus">
+        <option value="Single">Single</option>
+        <option value="Married">Married</option>
+        <option value="HeadOfHousehold">Head of Household</option>
+        <option value="Widow(er)">Widow(er)</option>
+    </select>
+    <!-- Conditional field for date of spouse's death if applicable -->
+    <div id="dateOfSpouseDeathField" style="display: none;">
+        <label for="dateOfSpouseDeath">Date of Spouse Death</label>
+        <input type="date" id="dateOfSpouseDeath" name="dateOfSpouseDeath">
+    </div>
+    <label for="fileJointly">Will you file jointly?</label>
+    <select id="fileJointly" name="fileJointly">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <!-- Question: Are You/Spouse considered legally blind on the last day of the tax year? -->
+    <label for="legallyBlind">Are You/Spouse considered legally blind on the last day of the tax year?</label>
+    <select id="legallyBlind" name="legallyBlind">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <h4>3. Dependents Information</h4>
+    <!-- Question: Do you have any dependents? -->
+    <label for="hasDependents">Do you have any dependents?</label>
+    <select id="hasDependents" name="hasDependents">
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+    </select>
+
+    <!-- Button to Add Dependent -->
+    <button type="button" id="addDependentBtn" style="display: none;">Add Dependent</button>
+
+     <!-- Table for Dependent Information -->
+     <table id="dependentTable" style="display: none;">
+         <thead>
+             <tr>
+                 <th>Name</th>
+                 <th>Relationship</th>
+                 <th>DOB</th>
+                 <th>SSN</th>
+                 <th>Resident Status</th>
+                 <th>Months Lived with You</th>
+                 <th>Disable (if)</th>
+             </tr>
+         </thead>
+         <tbody>
+             <!-- Placeholder row for cloning -->
+             <tr id="dependentRowTemplate" style="display: none;">
+                 <td><input type="text" name="dependentName[]"></td>
+                 <td><input type="text" name="relationship[]"></td>
+                 <td><input type="date" name="dependentDOB[]"></td>
+                 <td><input type="text" name="dependentSSN[]"></td>
+                 <td><input type="text" name="residentStatus[]"></td>
+                 <td><input type="number" name="monthsLived[]"></td>
+                 <td><input type="text" name="disableIf[]"></td>
+                 <td><button type="button" class="removeBtn">Remove</button></td> <!-- Add Remove button -->
+             </tr>
+         </tbody>
+     </table>
+
+
+     <h4>3. Bank Details (For Refund Direct Deposit)</h4>
+<table>
+    <tr>
+        <td><label for="bankName">Name of Bank</label></td>
+        <td><input type="text" id="bankName" name="bankName"></td>
+    </tr>
+    <tr>
+        <td><label for="accountType">Account Type</label></td>
+        <td><input type="text" id="accountType" name="accountType"></td>
+    </tr>
+    <tr>
+        <td><label for="routingNumber">Routing Number</label></td>
+        <td><input type="text" id="routingNumber" name="routingNumber"></td>
+    </tr>
+    <tr>
+        <td><label for="accountNumber">Account Number</label></td>
+        <td><input type="text" id="accountNumber" name="accountNumber"></td>
+    </tr>
+</table>
+
+<label for="foreignBankAccounts">Do you have bank accounts in a foreign country?</label>
+<select id="foreignBankAccounts" name="foreignBankAccounts">
+    <option value="No">No</option>
+    <option value="Yes">Yes</option>
+</select>
+
+
+
+   
+<h4>4. Please answer the following questions to determine maximum deductions</h4>
+<div>
+    <label for="fullPartTimeJob">Do you work on full-time or part-time job? (Provide Form W2)</label>
+    <select id="fullPartTimeJob" name="fullPartTimeJob">
+        <option value="full-time">Full Time</option>
+        <option value="part-time">Part Time</option>
+    </select>
+    <input type="file" id="fullPartTimeJobFile" name="fullPartTimeJobFile">
+</div>
+<div id="fullPartTimeJobFileUpload" style="display: none;">
+    <label for="fullPartTimeJobFile">Upload Form W2 file:</label>
+    <input type="file" id="fullPartTimeJobFile" name="fullPartTimeJobFile">
+</div>
+
+<div>
+    <label for="investmentIncome">Do you have any investment income (Dividend or interest)? (Provide 1099-Div, 1099-Int)</label>
+    <select id="investmentIncome" name="investmentIncome">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <input type="file" id="investmentIncomeFile" name="investmentIncomeFile">
+</div>
+<div id="investmentIncomeFileUpload" style="display: none;">
+    <label for="investmentIncomeFile">Upload 1099-Div or 1099-Int file:</label>
+    <input type="file" id="investmentIncomeFile" name="investmentIncomeFile">
+</div>
+
+<!-- Add similar sections for other questions -->
+<div>
+    <label for="retirementIncome">Do you/Spouse have any retirement income (Pension/Annuities)? Provide Form-1099R</label>
+    <select id="retirementIncome" name="retirementIncome">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <input type="file" id="retirementIncomeFile" name="retirementIncomeFile">
+</div>
+<div id="retirementIncomeFileUpload" style="display: none;">
+    <label for="retirementIncomeFile">Upload Form-1099R file:</label>
+    <input type="file" id="retirementIncomeFile" name="retirementIncomeFile">
+</div>
+
+<!-- Repeat similar sections for other questions -->
+<div>
+    <label for="llcElection">After forming your LLC, did you make an election for your LLC to become an S corp?</label>
+    <select id="llcElection" name="llcElection">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+
+<div>
+    <label for="capitalGainLoss">Do you have any capital gain/loss during the last year? (Provide Form 1099-B)</label>
+    <select id="capitalGainLoss" name="capitalGainLoss">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <input type="file" id="capitalGainLossFile" name="capitalGainLossFile">
+</div>
+<div id="capitalGainLossFileUpload" style="display: none;">
+    <label for="capitalGainLossFile">Upload Form 1099-B:</label>
+    <input type="file" id="capitalGainLossFile" name="capitalGainLossFile">
+</div>
+
+    
+<div>
+    <label>Do you have any of the following types of Supplemental income?</label>
+    <div>
+        <table>
+            <tr>
+                <td><input type="checkbox" id="rentalIncome" name="rentalIncome"></td>
+                <td><label for="rentalIncome">Rental Income</label></td>
+                <td><input type="checkbox" id="royalties" name="royalties"></td>
+                <td><label for="royalties">Royalties</label></td>
+                <td><input type="checkbox" id="partnershipK1" name="partnershipK1"></td>
+                <td><label for="partnershipK1">Partnership K-1</label></td>
+                <td><input type="checkbox" id="sCorpK1" name="sCorpK1"></td>
+                <td><label for="sCorpK1">S Corp K-1</label></td>
+                <td><input type="checkbox" id="estateOrTrust" name="estateOrTrust"></td>
+                <td><label for="estateOrTrust">Estate or Trust</label></td>
+                <td><input type="checkbox" id="farmRentalIncome" name="farmRentalIncome"></td>
+                <td><label for="farmRentalIncome">Farm Rental Income</label></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div>
+    <label for="farmingIncome">Do you have income from Farming? Provide P & L Statement</label>
+    <select id="farmingIncome" name="farmingIncome">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <input type="file" id="farmingIncomeFile" name="farmingIncomeFile">
+</div>
+
+<div>
+    <label for="unemploymentCompensation">Did you receive any unemployment compensation from state? (Provide Form 1099-G)</label>
+    <select id="unemploymentCompensation" name="unemploymentCompensation">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <input type="file" id="unemploymentCompensationFile" name="unemploymentCompensationFile">
+</div>
+
+<div>
+    <label for="gamblingWinnings">Did you have any Gambling Winnings? (Provide Form 1099-W2 G)</label>
+    <select id="gamblingWinnings" name="gamblingWinnings">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <input type="file" id="gamblingWinningsFile" name="gamblingWinningsFile">
+</div>
+<div>
+    <label for="stateTaxRefund">Did you receive state tax refund last year?</label>
+    <select id="stateTaxRefund" name="stateTaxRefund">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div>
+    <label for="foreignIncome">Did you earn any income while working in a country other than the U.S.?</label>
+    <select id="foreignIncome" name="foreignIncome">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div>
+    <label for="otherIncome">Do you have any other sources of income that we haven't requested yet?</label>
+    <select id="otherIncome" name="otherIncome">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+<div>
+    <label for="hsa">Do you have a Health Saving Account (HSA)?Provide Form 1099-SA		</label>
+    <select id="hsa" name="hsa">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <input type="file" id="hsaFile" name="hsaFile">
+</div>
+
+<div>
+    <label for="msa">Do you have a Medicare Saving Account (MSA)?Provide Form 1099-SA		</label>
+    <select id="msa" name="msa">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <input type="file" id="msaFile" name="msaFile">
+</div>
+
+<div>
+    <label for="marketplaceInsurance">Did you purchase Health insurance from the marketplace?Provide Form 1095-A</label>
+    <select id="marketplaceInsurance" name="marketplaceInsurance">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <input type="file" id="marketplaceInsuranceFile" name="marketplaceInsuranceFile">
+</div>
+
+<div>
+    <label for="iraContribution">Did you or your spouse contribute to an IRA during the tax year?</label>
+    <select id="iraContribution" name="iraContribution">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div>
+    <label for="itemizedDeductions">Would you like to go over your itemized deductions?</label>
+    <select id="itemizedDeductions" name="itemizedDeductions">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div id="itemizedDeductionsOptions" >
+    <label>Check all applicable itemized deductions:</label>
+    <table>
+        <tr>
+            <td><input type="checkbox" id="charityDonation" name="charityDonation"></td>
+            <td><label for="charityDonation">Charity/Donation</label></td>
+
+            <td><input type="checkbox" id="gamblingLoss" name="gamblingLoss"></td>
+            <td><label for="gamblingLoss">Gambling Loss</label></td>
+
+            <td><input type="checkbox" id="casualityTheftLoss" name="casualityTheftLoss"></td>
+            <td><label for="casualityTheftLoss">Casualty or Theft loss</label></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="propertyTaxes" name="propertyTaxes"></td>
+            <td><label for="propertyTaxes">Property Taxes</label></td>
+
+            <td><input type="checkbox" id="mortgageInterest" name="mortgageInterest"></td>
+            <td><label for="mortgageInterest">Mortgage interest</label></td>
+
+            <td><input type="checkbox" id="stateLocalTaxes" name="stateLocalTaxes"></td>
+            <td><label for="stateLocalTaxes">State/local Taxes</label></td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <label for="studentLoanInterest">Did you make any payments for student loan interest reported on Form 1098-E?</label>
+    <select id="studentLoanInterest" name="studentLoanInterest">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div>
+    <label for="scholarship">Did you/dependent receive any scholarship from an institute?(Provide Form 1098-T)	</label>
+    <select id="scholarship" name="scholarship">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <input type="file" id="scholarshipFile" name="scholarshipFile">
+</div>
+
+<div>
+    <label for="estimatedTaxPayments">Did you make any estimated tax payments to the IRS during last tax year?</label>
+    <select id="estimatedTaxPayments" name="estimatedTaxPayments">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+
+<h4>5. Information for Tax Credits</h4>
+
+<div>
+    <label for="childCareExpenses">Did you pay for child care for your dependent?</label>
+    <select id="childCareExpenses" name="childCareExpenses">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div>
+    <label for="adoptedChild">Did you adopt a child last tax year?</label>
+    <select id="adoptedChild" name="adoptedChild">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div>
+    <label for="dependentStudent">Is your dependent a student in an eligible educational institution during the year?</label>
+    <select id="dependentStudent" name="dependentStudent">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div>
+    <label for="energyEfficientImprovements">Did you make any energy-efficient improvements to your home last year?</label>
+    <select id="energyEfficientImprovements" name="energyEfficientImprovements">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div>
+    <label for="mortgageInterestCredit">Does the Mortgage interest credit apply to you?</label>
+    <select id="mortgageInterestCredit" name="mortgageInterestCredit">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+</div>
+<div>
+    <label for="clientSignature">Client's Signature:</label>
+    <input type="text" id="clientSignature" name="clientSignature" placeholder="Enter full name ">
+</div>
+<div>
+    NOTE: Please must provide us all relevant statements/forms(W2, 1099 etc) along with this organizer.						
+
+</div>
+
+
+<button type="submit">Submit</button>
+
+
+       
+    </form>
+</body>
+
+
+  <!-- Script -->
+ 
+<script>
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            console.log(data);
+        });
+
+
+
+
+    document.getElementById('taxYear').setAttribute('max', new Date().getFullYear());
+
+ // Event delegation for Remove button
+ document.querySelector('#dependentTable tbody').addEventListener('click', function(event) {
+        if (event.target.classList.contains('removeBtn')) {
+            event.target.closest('tr').remove();
+        }
+    });
+    document.getElementById('maritalStatus').addEventListener('change', function() {
+var dateOfSpouseDeathField = document.getElementById('dateOfSpouseDeathField');
+if (this.value === 'Widow(er)') {
+    dateOfSpouseDeathField.style.display = 'block';
+} else {
+    dateOfSpouseDeathField.style.display = 'none';
+}
+});
+
+document.getElementById('identityProtectionPIN').addEventListener('change', function() {
+var pinInput = document.getElementById('pinInput');
+if (this.value === 'Yes') {
+    pinInput.style.display = 'block';
+} else {
+    pinInput.style.display = 'none';
+}
+});
+
+
+document.getElementById('hasDependents').addEventListener('change', function() {
+        var dependentsInfo = document.getElementById('dependentsInfo');
+        if (this.value === 'Yes') {
+            dependentsInfo.style.display = 'block';
+        } else {
+            dependentsInfo.style.display = 'none';
+        }
+    });
+
+    document.getElementById('hasDependents').addEventListener('change', function() {
+        var dependentTable = document.getElementById('dependentTable');
+        if (this.value === 'Yes') {
+            dependentTable.style.display = 'block';
+        } else {
+            dependentTable.style.display = 'none';
+        }
+    });
+
+    document.getElementById('addDependentBtn').addEventListener('click', function() {
+        var dependentRowTemplate = document.getElementById('dependentRowTemplate');
+        var dependentTableBody = document.querySelector('#dependentTable tbody');
+        var newRow = dependentRowTemplate.cloneNode(true);
+        newRow.removeAttribute('id');
+        newRow.style.display = 'table-row';
+        dependentTableBody.appendChild(newRow);
+    });
+
+
+    document.getElementById('hasDependents').addEventListener('change', function() {
+        var dependentTable = document.getElementById('dependentTable');
+        var addDependentBtn = document.getElementById('addDependentBtn');
+        if (this.value === 'Yes') {
+            dependentTable.style.display = 'block';
+            addDependentBtn.style.display = 'block';
+        } else {
+            dependentTable.style.display = 'none';
+            addDependentBtn.style.display = 'none';
+        }
+    });
+
+    document.getElementById('addDependentBtn').addEventListener('click', function() {
+        var dependentRowTemplate = document.getElementById('dependentRowTemplate');
+        var dependentTableBody = document.querySelector('#dependentTable tbody');
+        var newRow = dependentRowTemplate.cloneNode(true);
+        newRow.removeAttribute('id');
+        newRow.style.display = 'table-row';
+        dependentTableBody.appendChild(newRow);
+    });
+</script>
+</html>
