@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000
 
 app.use(express.json())
 
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 
 const tempelatePath = path.join(__dirname, '../tempelates')
 const publicPath = path.join(__dirname, '../public')
