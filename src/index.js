@@ -5,6 +5,8 @@ require('dotenv').config();
 // const hbs = require("hbs")
 const FormCollection = require("./mongo")
 const port = process.env.PORT || 3000
+
+
 app.use(express.json())
 
 app.use(express.urlencoded({ extended: false }))
@@ -27,11 +29,21 @@ app.get('/', (req, res) => {
 
 
 
-app.post('/FormCollection', async (req, res) => {
+// Assuming you have already set up your Express app and configured body parsing middleware
 
-console.log(req.body);
-})
-
+// POST route to handle form submission
+app.post("/submit-form", (req, res) => {
+    // Extract form data from request body
+    const formData = req.body;
+  
+    // Process the form data (e.g., save it to a database)
+    // For demonstration purposes, let's just log the form data
+    console.log("Form data received:", formData);
+  
+    // Send a response back to the client
+    res.send("Form submitted successfully!");
+  });
+  
 
 
 
